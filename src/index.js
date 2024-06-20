@@ -4,12 +4,12 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 const userRoutes = require('../src/user/routes/userRoutes');
 
-const {password} = require('../config.json')
+const {password,user} = require('../config.json')
 
 const app = express();
 const port = process.env.PORT || 3000;
 
-mongoose.connect(`mongodb+srv://athalfrid:${password}@cluster0.rfcopg5.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`)
+mongoose.connect(`mongodb+srv://${user}:${password}@cluster0.rfcopg5.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`)
 .then( ()=> {
   console.log('MongoDB connection established');
 })
