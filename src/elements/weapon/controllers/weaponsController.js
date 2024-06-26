@@ -27,3 +27,15 @@ exports.deleteWeapon = (req,res) => {
     .then(()=> res.status(200).json({message : 'Arme supprimé !'}))
     .catch(error => res.status(404).json({error}));
 }
+
+exports.updateWeapon = (req,res) => {
+    Weapon.findByIdAndUpdate(req.params.id,{...req.body},{new: true})
+    .then(weapon => {
+        if(!weapon) {
+            return res.status(400).json({error: 'Arme non trouvée !'});
+        }
+        res.status(200).json(weapon);
+    })
+    .catch(error => res.status(400).json({error}));
+    
+}
