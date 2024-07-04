@@ -6,6 +6,7 @@ const consumableSchema = new Schema({
     type: { type: String, required: true }, // e.g., "medkit", "dynamite"
     description: { type: String, required: true },
     effects: { type: String, required: true },
+    price: {type: Number, required: true}
   });
   
   const Consumable = mongoose.model('Consumable', consumableSchema);

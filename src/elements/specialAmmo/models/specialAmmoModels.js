@@ -7,7 +7,8 @@ const specialAmmoSchema = new Schema({
   ammoSize: {type: String, required: true},
   dammageUpdate: {type: Number, required: true},
   dammageZone: {type: Number, required: false},
-  ammoCapacityUpdate: {type: Number, required: true}
+  ammoCapacityUpdate: {type: Number, required: true},
+  price: {type: Number, required: true},
 });
 
 const SpecialAmmo = mongoose.model('SpecialAmmo', specialAmmoSchema);

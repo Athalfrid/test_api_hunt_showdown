@@ -7,7 +7,7 @@ exports.getSpecialAmmos = (req,res) => {
 }
 
 exports.getSpecialAmmo = (req,res) => {
-    SpecialAmmo.findOne({_id: req.params.id})
+    SpecialAmmo.findById(req.params.id)
     .then(specialAmmo => res.status(200).json(specialAmmo))
     .catch(error => res.status(400).json({error}));
 }

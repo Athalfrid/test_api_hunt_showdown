@@ -7,7 +7,7 @@ exports.getHunters = (req,res) => {
 }
 
 exports.getHunter = (req,res) => {
-    Hunter.findOne({_id: req.params.id})
+    Hunter.findById(req.params.id)
     .then(hunter => res.status(200).json(hunter))
     .catch(error => res.status(400).json({error}));
 }

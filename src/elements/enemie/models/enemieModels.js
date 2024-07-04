@@ -7,7 +7,6 @@ const enemySchema = new Schema({
     health: { type: Number, required: true },
     damage: { type: Number, required: true },
     behavior: { type: String, required: true },
-    loot: [{ type: Schema.Types.ObjectId, ref: 'Loot' }],
   });
   
   const Enemy = mongoose.model('Enemy', enemySchema);

@@ -10,7 +10,7 @@ exports.getUsers = (req, res) => {
 };
 
 exports.getUser = (req, res) => {
-  User.findOne({ _id: req.params.id })
+  User.findById(req.params.id)
     .then((user) => res.status(200).json(user))
     .catch((error) => res.status(400).json({ error }));
 };
@@ -23,6 +23,7 @@ exports.createUser = (req, res) => {
         name: req.body.name,
         email: req.body.email,
         password: hash,
+        role: 'user'
       });
       user
         .save()
@@ -44,7 +45,7 @@ exports.loginUser = (req, res) => {
       if (!user) {
         return res
           .status(401)
-          .json({ message: "Paire login/mot de passe incorrecte !" });
+          .json({ message: "Email incorrecte !" });
       }
       bcrypt
         .compare(req.body.password, user.password)
@@ -52,13 +53,14 @@ exports.loginUser = (req, res) => {
           if (!valid) {
             return res
               .status(401)
-              .json({ message: "Paire login/mot de passe incorrecte !" });
+              .json({ message: "Mot de passe incorrecte !" });
           }
           res.status(200).json({
             userId: user._id,
-            token: jwt.sign({ userId: user._id }, randomString, {
+            token: jwt.sign({ userId: user._id,role:user.role }, randomString, {
               expiresIn: "24h",
             }),
+            role:user.role,
           });
         })
         .catch((error) => res.status(500).json({ error }));

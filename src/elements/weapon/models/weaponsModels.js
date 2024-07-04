@@ -6,10 +6,11 @@ const weaponSchema = new Schema({
   type: { type: String, required: true }, 
   damage: { type: Number, required: true },
   lightCaCdamage: { type: Number, required: true },
-  havyCaCdamage: { type: Number, required: true },
+  heavyCaCdamage: { type: Number, required: true },
   range: { type: Number, required: true },
   ammoCapacity: { type: Number, required: true },
-  traits: [{ type: Schema.Types.ObjectId, ref: "Trait" }],
+  price: {type: Number, required: true},
+  typeMunition: { type: String, required: true}
 });
 
 const Weapon = mongoose.model('Weapon', weaponSchema);

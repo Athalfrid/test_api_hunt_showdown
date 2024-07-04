@@ -7,7 +7,7 @@ exports.getWeapons = (req,res) => {
 }
 
 exports.getWeapon = (req,res) => {
-    Weapon.findOne({_id: req.params.id})
+    Weapon.findById(req.params.id)
     .then(weapon => res.status(200).json(weapon))
     .catch(error => res.status(400).json({error}));
 }
