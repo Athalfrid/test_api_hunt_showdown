@@ -57,10 +57,11 @@ exports.loginUser = (req, res) => {
           }
           res.status(200).json({
             userId: user._id,
+            role:user.role,
+            name:user.name,
             token: jwt.sign({ userId: user._id,role:user.role }, randomString, {
               expiresIn: "24h",
             }),
-            role:user.role,
           });
         })
         .catch((error) => res.status(500).json({ error }));
